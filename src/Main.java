@@ -20,11 +20,13 @@ class Card {
     private Suit suit;
     private Rank rank;
 
+    // Constructor
     public Card(Suit suit, Rank rank) {
         this.suit = suit;
         this.rank = rank;
     }
 
+    // Getters
     public Suit getSuit() {
         return suit;
     }
@@ -33,6 +35,7 @@ class Card {
         return rank;
     }
 
+    // toString method to represent card as string
     @Override
     public String toString() {
         return rank + " of " + suit;
@@ -41,9 +44,11 @@ class Card {
 
 // Comparator to compare cards based on color, suit, and value
 class CardComparator implements Comparator<Card> {
+
+    // Compare method to define custom comparison logic
     @Override
     public int compare(Card card1, Card card2) {
-        // Compare by color
+        // Compare by color (red before black)
         int colorCompare = getColorValue(card1.getSuit()) - getColorValue(card2.getSuit());
         if (colorCompare != 0) {
             return colorCompare;
@@ -67,9 +72,9 @@ class CardComparator implements Comparator<Card> {
 class Deck {
     private List<Card> cards;
 
+    // Constructor to initialize the deck with 52 cards
     public Deck() {
         cards = new ArrayList<>();
-        // Initialize deck with 52 cards
         for (Suit suit : Suit.values()) {
             for (Rank rank : Rank.values()) {
                 cards.add(new Card(suit, rank));
